@@ -1,23 +1,37 @@
-import logo from './logo.svg';
 import './App.css';
+import data from './data/data.json';
+import { FaBars } from "react-icons/fa";
 
 function App() {
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+     <nav className='navbar'>
+       <div>
+       <div className='nav'>
+        devjobs
+        <FaBars />
+       </div>
+       </div>
+       </nav>
+    <div className='jobs' >
+      {data.map((datas)=>{
+        return(
+          <div key={datas.id} className='items'>
+           <div dangerouslySetInnerHTML={{ __html: datas.logo }}></div>
+            <div>
+              <div className='time'>
+              <p>{datas.postedAt} </p>
+              <p>{datas.contract} </p>
+              </div>
+              <h3>{datas.position} </h3>
+              <p className='company'>{datas.company} </p>
+              <p className='location'>{datas.location} </p>
+            </div>
+          </div>
+        )
+      })}
+    </div>
     </div>
   );
 }
